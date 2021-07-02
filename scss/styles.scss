@@ -1,0 +1,458 @@
+// Override Bootstrap's Sass default variables
+//
+// Nearly all variables in Bootstrap are written with the `!default` flag.
+// This allows you to override the default values of those variables before
+// you import Bootstrap's source Sass files.
+//
+// Overriding the default variable values is the best way to customize your
+// CSS without writing _new_ styles. For example, change you can either change
+// `$body-color` or write more CSS that override's Bootstrap's CSS like so:
+// `body { color: red; }`.
+
+//
+// Bring in Bootstrap
+//
+
+// Option 1
+//
+// Import all of Bootstrap's CSS
+
+// @import "bootstrap/scss/bootstrap";
+
+// Option 2
+//
+// Place variable overrides first, then import just the styles you need. Note that some stylesheets are required no matter what.
+
+// Toggle global options
+$enable-gradients: true;
+$enable-shadows: true;
+
+// Customize some defaults
+$body-color: #333;
+$body-bg: #fff;
+$border-radius: 0.4rem;
+$success: #7952b3;
+
+// My colours
+$color1: #0e2c5e;
+$color2: #7b2854;
+$color3: #279084;
+$primary: #7952b3;
+
+@import "bootstrap/scss/functions"; // Required
+@import "bootstrap/scss/variables"; // Required
+@import "bootstrap/scss/mixins"; // Required
+
+@import "bootstrap/scss/root"; // Required
+@import "bootstrap/scss/reboot"; // Required
+@import "bootstrap/scss/type";
+// @import "bootstrap/scss/images";
+// @import "bootstrap/scss/code";
+@import "bootstrap/scss/grid";
+// @import "bootstrap/scss/tables";
+@import "bootstrap/scss/forms";
+@import "bootstrap/scss/buttons";
+@import "bootstrap/scss/transitions";
+// @import "bootstrap/scss/dropdown";
+// @import "bootstrap/scss/button-group";
+// @import "bootstrap/scss/input-group"; // Requires forms
+// @import "bootstrap/scss/custom-forms";
+// @import "bootstrap/scss/nav";
+// @import "bootstrap/scss/navbar"; // Requires nav
+// @import "bootstrap/scss/card";
+// @import "bootstrap/scss/breadcrumb";
+// @import "bootstrap/scss/pagination";
+// @import "bootstrap/scss/badge";
+// @import "bootstrap/scss/jumbotron";
+// @import "bootstrap/scss/alert";
+// @import "bootstrap/scss/progress";
+// @import "bootstrap/scss/media";
+// @import "bootstrap/scss/list-group";
+@import "bootstrap/scss/close";
+// @import "bootstrap/scss/toasts";
+@import "bootstrap/scss/modal"; // Requires transitions
+// @import "bootstrap/scss/tooltip";
+// @import "bootstrap/scss/popover";
+// @import "bootstrap/scss/carousel";
+// @import "bootstrap/scss/spinners";
+@import "bootstrap/scss/utilities";
+// @import "bootstrap/scss/print";
+
+//
+// Custom styles
+//
+
+@import "icon-list";
+@import url("https://fonts.googleapis.com/css2?family=Quicksand&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@400;600&display=swap");
+
+$screen-split: 20%;
+$navigation-width: 15%;
+$main-content-width: 50%;
+
+html {
+  font-size: 14px;
+  scroll-behavior: smooth;
+}
+
+p,
+a,
+li {
+  font-family: "Quicksand";
+  font-size: 1.1rem;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Source Serif Pro", serif;
+}
+
+h1 {
+  font-size: 5rem;
+}
+
+h2 {
+  font-size: 3rem;
+}
+
+h3 {
+  font-size: 2rem;
+}
+
+button {
+  border: none;
+  border-radius: 2px;
+  padding: 5px 20px;
+}
+
+.color-1 {
+  background: $color1;
+}
+.color-2 {
+  background: $color2;
+}
+.color-3 {
+  background: $color3;
+}
+
+.navigation {
+  height: 100%;
+  width: $navigation-width;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: $screen-split;
+  background-color: #111;
+  padding-top: 20px;
+
+  .profiler {
+    width: 75%;
+    border-radius: 50%;
+    margin: 25px 0 25px 0;
+  }
+
+  a {
+    position: relative;
+    font-size: 1.2rem;
+    padding: 3px 0 3px 0;
+    color: white; /* blue colors for links too */
+    text-decoration: inherit; /* no underline */
+
+    &::after {
+      content: "";
+      position: absolute;
+      height: 1px;
+      bottom: 4px;
+      left: 0;
+      right: 0;
+      background-color: white;
+      visibility: hidden;
+      transform: scaleX(0);
+      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    &.active {
+      &::after {
+        visibility: visible;
+        transform: scaleX(1);
+      }
+    }
+
+    &:hover {
+      &::after {
+        visibility: visible;
+        transform: scaleX(1);
+      }
+    }
+  }
+
+  span {
+    color: white;
+    font-size: 12px;
+  }
+
+  .signature {
+    font-size: 1.2rem;
+    #title {
+      font-size: 1rem;
+    }
+    padding: 0 10px;
+  }
+}
+
+#hero {
+  background-image: url("/assets/img/hero.jpg");
+  background-size: cover;
+}
+
+.hero {
+  font-family: "Lora", serif;
+  color: white;
+  background-image: url("/assets/img/stars.jpg");
+  background-size: 100%;
+
+  height: 100vh;
+}
+
+.main-content {
+  width: 100 - ($screen-split * 2 + $navigation-width);
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  left: $screen-split + $navigation-width;
+  overflow-y: scroll;
+
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.spinning-graphic {
+  margin-top: 75px;
+  position: relative;
+
+  .star,
+  .star2 {
+    margin: 0 10px;
+    width: 100px;
+    height: 100px;
+    clip-path: polygon(
+      50% 0%,
+      61% 35%,
+      98% 35%,
+      68% 57%,
+      79% 91%,
+      50% 70%,
+      21% 91%,
+      32% 57%,
+      2% 35%,
+      39% 35%
+    );
+    background: url("/assets/img/stars_2.jpg") center;
+    background-attachment: fixed;
+  }
+}
+
+section {
+  padding: 30px 70px 30px 70px;
+  margin-bottom: 30px;
+
+  .section-title {
+    padding-bottom: 15px;
+    .overline {
+      font-size: 0.8rem;
+      font-weight: lighter;
+      color: #222;
+      margin-bottom: 5px;
+    }
+    h3 {
+      font-weight: bold;
+    }
+  }
+  .work-title,
+  .work-date {
+    display: inline;
+  }
+}
+
+#about {
+  margin-bottom: 0px;
+}
+
+.timeline-centered {
+  position: relative;
+  margin-bottom: 30px;
+
+  h2 {
+    font-size: 0.9rem;
+  }
+
+  .timeline-entry {
+    position: relative;
+    margin-top: 5px;
+    margin-left: 30px;
+    margin-bottom: 10px;
+    clear: both;
+
+    .timeline-entry-inner {
+      position: relative;
+      margin-left: -20px;
+
+      .timeline-icon {
+        display: block;
+        width: 40px;
+        height: 40px;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        -ms-border-radius: 50%;
+        border-radius: 50%;
+        text-align: center;
+        -moz-box-shadow: 0 0 0 5px #f2f3f7;
+        -webkit-box-shadow: 0 0 0 5px #f2f3f7;
+        box-shadow: 0 0 0 5px #f2f3f7;
+        line-height: 40px;
+        float: left;
+      }
+
+      .timeline-icon i {
+        color: #fff;
+      }
+      // .timeline-icon.color-2 {
+      //   background: #ec5453;
+      // }
+      // .timeline-icon.color-3 {
+      //   background: #f9bf3f;
+      // }
+      // .timeline-icon.color-4 {
+      //   background: #a84cb8;
+      // }
+      // .timeline-icon.color-5 {
+      //   background: #2fa499;
+      // }
+      .timeline-icon.color-none {
+        background: #fff;
+        width: 20px;
+        height: 20px;
+        margin-left: 10px;
+      }
+    }
+  }
+}
+
+.timeline-centered:before,
+.timeline-centered:after {
+  content: " ";
+  display: table;
+}
+
+.timeline-centered:before {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 4px;
+  background: #f2f3f7;
+  top: 20px;
+  bottom: 20px;
+  margin-left: 29px;
+}
+
+.timeline-centered .timeline-entry .timeline-entry-inner .timeline-label {
+  position: relative;
+  background: #f2f3f7;
+  padding: 1.5em;
+  margin-left: 60px;
+  -webkit-background-clip: padding-box;
+  -moz-background-clip: padding;
+  background-clip: padding-box;
+}
+
+.timeline-centered .timeline-entry .timeline-entry-inner .timeline-label:after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 9px 9px 9px 0;
+  border-color: transparent #e6e6e6 transparent transparent;
+  left: 0;
+  top: 10px;
+  margin-left: -9px;
+}
+
+.timeline-centered .timeline-entry .timeline-entry-inner .timeline-label p + p {
+  margin-top: 15px;
+  font-size: 10px;
+}
+
+.timeline-centered .timeline-entry .timeline-entry-inner .timeline-label h2 {
+  font-size: 1.3rem;
+  font-family: "Quicksand", Arial, sans-serif;
+  font-weight: 500;
+}
+
+.timeline-centered .timeline-entry .timeline-entry-inner .timeline-label h2 a {
+  color: #000;
+}
+
+.timeline-centered
+  .timeline-entry
+  .timeline-entry-inner
+  .timeline-label
+  h2
+  span {
+  opacity: 0.4;
+  font-size: 16px;
+}
+
+#education {
+  font-family: "Quicksand", Arial, sans-serif;
+  font-size: 1rem;
+  margin-bottom: 0;
+  button {
+    margin: 0 3px;
+    width: 100%;
+    border: 1px solid #111;
+    background: #f2f3f7;
+    color: #111;
+    padding: 20px 10px;
+
+    &:hover,
+    &[aria-expanded~="true"] {
+      color: white;
+      border: 1px solid white;
+      &.color-1 {
+        background: $color1;
+      }
+      &.color-2 {
+        background: $color2;
+      }
+      &.color-3 {
+        background: $color3;
+      }
+    }
+  }
+
+  .card {
+    margin: 10px 3px 0 3px;
+    padding: 20px 20px;
+    border: 1px solid #aaa;
+
+    h4 {
+      font-size: 1.2rem;
+      opacity: 0.4;
+    }
+  }
+}
+
+#contact {
+  margin-bottom: 400px;
+  form {
+    padding: 10px 30px;
+    box-sizing: border-box;
+    outline: 1px dashed #aaa;
+  }
+}
