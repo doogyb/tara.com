@@ -86,10 +86,6 @@ $primary: #7952b3;
 @import url("https://fonts.googleapis.com/css2?family=Quicksand&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@400;600&display=swap");
 
-$screen-split: 20%;
-$navigation-width: 15%;
-$main-content-width: 50%;
-
 html {
   font-size: 14px;
   scroll-behavior: smooth;
@@ -138,11 +134,21 @@ button {
 
 .navigation {
   height: 100%;
-  width: $navigation-width;
+  display: none !important;
+
+  @include media-breakpoint-up(lg) {
+    display: flex !important;
+    width: 15%;
+    left: 0;
+  }
+  @include media-breakpoint-up(xl) {
+    width: 15%;
+    left: 10%;
+  }
+
   position: fixed;
   z-index: 1;
   top: 0;
-  left: $screen-split;
   background-color: #111;
   padding-top: 20px;
 
@@ -215,12 +221,21 @@ button {
 }
 
 .main-content {
-  width: 100 - ($screen-split * 2 + $navigation-width);
   position: absolute;
   z-index: 0;
-  top: 0;
-  left: $screen-split + $navigation-width;
   overflow-y: scroll;
+  top: 0;
+
+  width: 100%;
+
+  @include media-breakpoint-up(lg) {
+    width: 85%;
+    left: 15%;
+  }
+  @include media-breakpoint-up(xl) {
+    left: 25%;
+    width: 65%;
+  }
 
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
@@ -257,8 +272,15 @@ button {
 }
 
 section {
-  padding: 30px 70px 30px 70px;
+  padding: 30px 20px;
   margin-bottom: 30px;
+
+  @include media-breakpoint-up(sm) {
+    padding: 30px 40px;
+  }
+  @include media-breakpoint-up(md) {
+    padding: 30px 50px;
+  }
 
   .section-title {
     padding-bottom: 15px;
@@ -283,6 +305,10 @@ section {
 }
 
 .timeline-centered {
+  margin-left: -20px;
+  @include media-breakpoint-up(sm) {
+    margin-left: 0;
+  }
   position: relative;
   margin-bottom: 30px;
 
@@ -412,9 +438,17 @@ section {
   font-family: "Quicksand", Arial, sans-serif;
   font-size: 1rem;
   margin-bottom: 0;
+
+  .education-menu {
+    @include media-breakpoint-up(lg) {
+      display: flex;
+    }
+  }
+
   button {
-    margin: 0 3px;
+    margin: 3px 3px;
     width: 100%;
+
     border: 1px solid #111;
     background: #f2f3f7;
     color: #111;
