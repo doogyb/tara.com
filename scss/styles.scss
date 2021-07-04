@@ -322,6 +322,12 @@ section {
     font-size: 0.9rem;
   }
 
+  &:before,
+  &:after {
+    content: " ";
+    display: table;
+  }
+
   .timeline-entry {
     position: relative;
     margin-top: 5px;
@@ -355,18 +361,7 @@ section {
       .timeline-icon i {
         color: #fff;
       }
-      // .timeline-icon.color-2 {
-      //   background: #ec5453;
-      // }
-      // .timeline-icon.color-3 {
-      //   background: #f9bf3f;
-      // }
-      // .timeline-icon.color-4 {
-      //   background: #a84cb8;
-      // }
-      // .timeline-icon.color-5 {
-      //   background: #2fa499;
-      // }
+
       .timeline-icon.color-none {
         background: #fff;
         width: 20px;
@@ -383,78 +378,50 @@ section {
           padding-inline-start: 30px;
         }
       }
+
+      .timeline-label {
+        position: relative;
+        background: #f2f3f7;
+        padding: 1.5em;
+        @include media-breakpoint-up(sm) {
+          margin-left: 60px;
+        }
+        -webkit-background-clip: padding-box;
+        -moz-background-clip: padding;
+        background-clip: padding-box;
+
+        &:after {
+          content: "";
+          display: block;
+          position: absolute;
+          width: 0;
+          height: 0;
+          border-style: solid;
+          border-width: 9px 9px 9px 0;
+          border-color: transparent #e6e6e6 transparent transparent;
+          left: 0;
+          top: 10px;
+          margin-left: -9px;
+        }
+        p + p {
+          margin-top: 15px;
+          font-size: 10px;
+        }
+        h2 {
+          font-size: 1.3rem;
+          font-family: "Quicksand", Arial, sans-serif;
+          font-weight: 500;
+        }
+        h2 a {
+          color: #000;
+        }
+        h2 span {
+          opacity: 0.4;
+          font-size: 16px;
+        }
+      }
     }
   }
-}
-
-.timeline-centered:before,
-.timeline-centered:after {
-  content: " ";
-  display: table;
-}
-
-.timeline-centered:before {
-  @include media-breakpoint-up(sm) {
-    content: "";
-    position: absolute;
-    display: block;
-    width: 4px;
-    background: #f2f3f7;
-    top: 20px;
-    bottom: 20px;
-    margin-left: 29px;
-  }
-}
-
-.timeline-centered .timeline-entry .timeline-entry-inner .timeline-label {
-  position: relative;
-  background: #f2f3f7;
-  padding: 1.5em;
-  @include media-breakpoint-up(sm) {
-    margin-left: 60px;
-  }
-  -webkit-background-clip: padding-box;
-  -moz-background-clip: padding;
-  background-clip: padding-box;
-}
-
-.timeline-centered .timeline-entry .timeline-entry-inner .timeline-label:after {
-  content: "";
-  display: block;
-  position: absolute;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 9px 9px 9px 0;
-  border-color: transparent #e6e6e6 transparent transparent;
-  left: 0;
-  top: 10px;
-  margin-left: -9px;
-}
-
-.timeline-centered .timeline-entry .timeline-entry-inner .timeline-label p + p {
-  margin-top: 15px;
-  font-size: 10px;
-}
-
-.timeline-centered .timeline-entry .timeline-entry-inner .timeline-label h2 {
-  font-size: 1.3rem;
-  font-family: "Quicksand", Arial, sans-serif;
-  font-weight: 500;
-}
-
-.timeline-centered .timeline-entry .timeline-entry-inner .timeline-label h2 a {
-  color: #000;
-}
-
-.timeline-centered
-  .timeline-entry
-  .timeline-entry-inner
-  .timeline-label
-  h2
-  span {
-  opacity: 0.4;
-  font-size: 16px;
 }
 
 #education {
